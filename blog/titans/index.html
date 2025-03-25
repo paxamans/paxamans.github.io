@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="sharing personal opinion online">
+    <title>paxamans blog | titans</title>
+    
+    <link rel="stylesheet" href="https://paxamans.github.io/style.css?h=501c6ea82db27d74ea03">
+    
+    
+        
+    
+</head>
+<body>
+    
+<header class="space">
+    <a href="https:&#x2F;&#x2F;paxamans.github.io">&LeftArrow; Home</a>
+</header>
+
+    
+<main>
+    <h1>titans</h1>
+    
+    <p class="secondary small">
+        21 January, 2025
+
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        - Categories:
+        
+        
+        <a href="https:&#x2F;&#x2F;paxamans.github.io&#x2F;categories&#x2F;ml&#x2F;">ML</a>
+        
+        
+        
+        - Tags:
+        
+        
+        <a href="https:&#x2F;&#x2F;paxamans.github.io&#x2F;tags&#x2F;nlp&#x2F;">NLP</a>,
+        
+        
+        <a href="https:&#x2F;&#x2F;paxamans.github.io&#x2F;tags&#x2F;attention&#x2F;">Attention</a>
+        
+        
+    </p>
+    
+    <div class="space"></div>
+    <p>New <a href="https://arxiv.org/pdf/2501.00663v1">paper</a> about adding long-term memory for transformer architecture.</p>
+<p>Gentlemen from Google Research are taking their inspirations from <a href="https://www.researchgate.net/publication/236259722_Learning_and_Memory/">neuropsychology literature</a> and define <strong>memory</strong> as a "<em>neural update caused by an input</em>", and define <strong>learning</strong> as a "<em>process for acquiring effective and useful memory, given an objective</em>".</p>
+<p>They compare linear transformers with linear RNNs as more of like matrix-valued memory and vector-valued memory.</p>
+<h3 id="architecture">Architecture</h3>
+<p>They state that "<em>an event that is <strong>surprising</strong> is more memorable for humans</em>" and inspired by this, they admit it can be gradient with respect to the input. The larger the gradient is, the more different input data is from the past data. They call it <em>momentary surprise</em> and for the sake of not hitting local minima, they additionally including <em>past surprise</em>, which indicates the surprise amount of a very recent past.</p>
+<p>On top of that they are adding weight decay mechanism that decides how much information should be forgotten. They will call it contextual memory later in their illustrations. In addition, they use persistent memory, which is set of learnable, but input-independent parameters.</p>
+<p>They introduce 3 types of architecture designs:</p>
+<ul>
+<li>MAC (Memory as a Context) - long term memory used as context for current attention
+<img src="https://bear-images.sfo2.cdn.digitaloceanspaces.com/paxamans/fig2.png" alt="fig2" /></li>
+<li>MAG (Memory as a Gate) - same gating mechanism as in LSTM
+<img src="https://bear-images.sfo2.cdn.digitaloceanspaces.com/paxamans/fig4.png" alt="fig4" /></li>
+<li>MAL (Memory as a Layer) - all memory connected as a layer in network
+<img src="https://bear-images.sfo2.cdn.digitaloceanspaces.com/paxamans/fig5.png" alt="fig5" /></li>
+</ul>
+<p>In their experiments they also include LMM. It's made for evaluating memory in MAL design, they use similar architecture as in <a href="https://arxiv.org/pdf/2212.14052">Hungry Hungry Hippos</a>, but they replace sequence model with neural memory module(LMM). Since each part of memory system should work independently, they treat it as a standalone model, even without short-term memory.</p>
+<p>Benchmarks look quite good, beating <a href="https://arxiv.org/pdf/2207.06881">RMT</a>.</p>
+<p>I see they treat linear attention like it's just one non-linear layer "MLP", so this generalizes <a href="https://arxiv.org/pdf/2412.06464">gated delta networks</a>, which is SOTA there. I think it's nice to use gradients as means of updating the memories before you sum the key value map and do associative scan with gate or whatever. If everything is leading to train at test time then it's good i guess.</p>
+<p>On the other hand, paper has some implicit negative results. Maybe they tried something and it didn't work as planned?</p>
+<p>Anyways, they promised to publish a code soon, but there is already an implementation by lucidreams(Phil Wang) <a href="https://github.com/lucidrains/titans-pytorch">available in Pytorch</a>.</p>
+
+</main>
+
+    <div class="dark-mode-buttons">
+        <button class="dark-mode-button" id="dark-mode-on"><img src="https://paxamans.github.io/dark_mode.svg" width="24" height="24" alt="Dark mode" aria-label="dark mode toggle" title="Dark mode"></button>
+        <button class="dark-mode-button" id="dark-mode-off"><img src="https://paxamans.github.io/light_mode.svg" width="24" height="24" alt="Light mode" aria-label="light mode toggle" title="Light mode"></button>
+    </div>
+    <script>
+        const cls = document.querySelector("html").classList;
+        const sessionTheme = sessionStorage.getItem("theme");
+
+        function setDark() {
+            cls.add("dark-mode");
+            cls.remove("light-mode");
+            sessionStorage.setItem("theme", "dark");
+        }
+        function setLight() {
+            cls.add("light-mode");
+            cls.remove("dark-mode");
+            sessionStorage.setItem("theme", "light");
+        }
+
+        if (sessionTheme === "dark") {
+            setDark();
+        } else if (sessionTheme === "light") {
+            setLight();
+        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            setDark();
+        }
+
+        document.getElementById("dark-mode-on").addEventListener("click", function(e) {
+            setDark();
+        });
+        document.getElementById("dark-mode-off").addEventListener("click", function(e) {
+            setLight();
+        });
+    </script>
+    <noscript>
+        <style>
+            .dark-mode-buttons {
+                display: none;
+            }
+        </style>
+    </noscript>
+</body>
+</html>

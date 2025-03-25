@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="explaining deepseek hype">
+    <title>paxamans blog | deepseek-hype</title>
+    
+    <link rel="stylesheet" href="https://paxamans.github.io/style.css?h=501c6ea82db27d74ea03">
+    
+    
+        
+    
+</head>
+<body>
+    
+<header class="space">
+    <a href="https:&#x2F;&#x2F;paxamans.github.io">&LeftArrow; Home</a>
+</header>
+
+    
+<main>
+    <h1>deepseek-hype</h1>
+    
+    <p class="secondary small">
+        31 January, 2025
+
+        
+        
+        
+        
+        
+        
+        
+
+        
+        
+        - Categories:
+        
+        
+        <a href="https:&#x2F;&#x2F;paxamans.github.io&#x2F;categories&#x2F;ml&#x2F;">ML</a>,
+        
+        
+        <a href="https:&#x2F;&#x2F;paxamans.github.io&#x2F;categories&#x2F;news&#x2F;">news</a>
+        
+        
+        
+        - Tags:
+        
+        
+        <a href="https:&#x2F;&#x2F;paxamans.github.io&#x2F;tags&#x2F;nlp&#x2F;">NLP</a>,
+        
+        
+        <a href="https:&#x2F;&#x2F;paxamans.github.io&#x2F;tags&#x2F;open-source&#x2F;">open-source</a>
+        
+        
+    </p>
+    
+    <div class="space"></div>
+    <p>At first glance, it seems like they just utilized all best practices.</p>
+<p>My friend recently told me that i have an ability to rapidly find "real life bugs" in everything i try independently without any bias.</p>
+<p><img src="https://bear-images.sfo2.cdn.digitaloceanspaces.com/paxamans/deepseek-1.png" alt="deepseek" /></p>
+<p>It is funny how "americanized" and "tiktok-like" it became after i prompted it to write using very basic language.</p>
+<p>What is that hard line break after <em>"for"</em>? And the dollar sign, because of which it formatted the next token sequence in one word via latex. And it is <em>0-shot</em></p>
+<h2 id="base-model">Base model</h2>
+<p>Anyways, here's how architecture looks like:</p>
+<p><img src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fea1c5554-749c-4e8f-990a-6e110011907f_861x755.png" alt="fig2" /></p>
+<p>According to information we have(<a href="https://hackaday.com/2025/01/27/new-open-source-deepseek-v3-language-model-making-waves">if it's true</a>). They used H800, which is export-restricted version of H100, and they state it required 2.788M GPU-Hours on that for full training, in dollars it's $5.576M at a H800 rental price of $2 per hour. comparing with <a href="https://x.com/_LouiePeters/status/1816443587053092917?lang=en">Meta's</a> $60M.</p>
+<p>Of course it raised some concerns between Zuck's employees:</p>
+<p><img src="https://bear-images.sfo2.cdn.digitaloceanspaces.com/paxamans/metapanic.jpg" alt="metapanic" /></p>
+<h2 id="reasoning">Reasoning</h2>
+<p>So there are 2 models, <em>DeepSeek-R1-Zero</em> and <em>DeepSeek-R1</em>, built on <em>DeepSeek-V3-Base</em>.</p>
+<p>R1 zero was trained with <a href="https://arxiv.org/pdf/2402.03300">GRPO</a>, a variant of <a href="https://en.wikipedia.org/wiki/Proximal_policy_optimization">PPO</a>.</p>
+<p>It has potential to perform exceptionally well at reasoning tasks without labeled <a href="https://huggingface.co/docs/trl/main/en/sft_trainer">SFT</a> set. Makes sense, base model was trained on 14.8 trillion tokens and it is evaluated on reasoning tasks, not on general chatting.</p>
+<p>DeepSeek developed two key models: Zero and R1. While Zero performs well overall, it has some limitations:</p>
+<ul>
+<li>Tends to get stuck in repetitive patterns</li>
+<li>Sometimes mixes different languages</li>
+<li>Can produce text that's difficult to read</li>
+</ul>
+<p>DeepSeek-R1 introduced improvements through a multi-stage training process:</p>
+<ol>
+<li>Cold Start Phase</li>
+</ol>
+<ul>
+<li>Initial training on thousands of Chain-of-Thought (CoT) examples</li>
+<li>Creates a better foundation before reinforcement learning</li>
+</ul>
+<ol start="2">
+<li>Reasoning-focused RL</li>
+</ol>
+<ul>
+<li>Uses the same reasoning-oriented reinforcement learning as in Zero</li>
+</ul>
+<ol start="3">
+<li>Supervised Fine-Tuning (SFT)</li>
+</ol>
+<ul>
+<li>600k reasoning-focused examples</li>
+<li>200k general (non-reasoning) examples</li>
+</ul>
+<ol start="4">
+<li>Final Phase</li>
+</ol>
+<ul>
+<li>Additional round of reinforcement learning</li>
+</ul>
+<p><em>"OpenAI, has complained that rivals, including those in China, are using its work to make rapid advances in developing their own artificial intelligence (AI) tools."</em>
+<a href="https://www.bbc.co.uk/news/articles/c9vm1m8wpr9o.amp">source</a></p>
+<p>In conclusion, their idea was to parse whole internet, and now they cry about "bad chinese" being reasonably better. I think DeepSeek made a really good leap in reasoning, but overall thing around it, is pretty overhyped.</p>
+<p>links:
+<a href="https://github.com/deepseek-ai/DeepSeek-V3/blob/main/DeepSeek_V3.pdf">DeepSeek-V3</a>
+<a href="https://github.com/deepseek-ai/DeepSeek-R1/blob/main/DeepSeek_R1.pdf">DeepSeek-R1</a></p>
+<p>links for other inventions:</p>
+<p>multimodal model. text+image input output <a href="https://github.com/deepseek-ai/Janus/blob/main/janus_pro_tech_report.pdf">Janus 1B &amp; 7B</a></p>
+<p>llava-style VLM with MoE. text+image input; out: text <a href="https://github.com/deepseek-ai/DeepSeek-VL2/blob/main/DeepSeek_VL2_paper.pdf">DeepSeek-VL2</a></p>
+
+</main>
+
+    <div class="dark-mode-buttons">
+        <button class="dark-mode-button" id="dark-mode-on"><img src="https://paxamans.github.io/dark_mode.svg" width="24" height="24" alt="Dark mode" aria-label="dark mode toggle" title="Dark mode"></button>
+        <button class="dark-mode-button" id="dark-mode-off"><img src="https://paxamans.github.io/light_mode.svg" width="24" height="24" alt="Light mode" aria-label="light mode toggle" title="Light mode"></button>
+    </div>
+    <script>
+        const cls = document.querySelector("html").classList;
+        const sessionTheme = sessionStorage.getItem("theme");
+
+        function setDark() {
+            cls.add("dark-mode");
+            cls.remove("light-mode");
+            sessionStorage.setItem("theme", "dark");
+        }
+        function setLight() {
+            cls.add("light-mode");
+            cls.remove("dark-mode");
+            sessionStorage.setItem("theme", "light");
+        }
+
+        if (sessionTheme === "dark") {
+            setDark();
+        } else if (sessionTheme === "light") {
+            setLight();
+        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            setDark();
+        }
+
+        document.getElementById("dark-mode-on").addEventListener("click", function(e) {
+            setDark();
+        });
+        document.getElementById("dark-mode-off").addEventListener("click", function(e) {
+            setLight();
+        });
+    </script>
+    <noscript>
+        <style>
+            .dark-mode-buttons {
+                display: none;
+            }
+        </style>
+    </noscript>
+</body>
+</html>
