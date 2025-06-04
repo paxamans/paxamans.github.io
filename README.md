@@ -1,3 +1,3 @@
 my website available here:
 
-paxamans.github.io
+https://paxamans.github.io
