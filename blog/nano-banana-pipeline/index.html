@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="How I used Nano Banana to create a mnemonic pipeline image.">
+    <title>paxamans blog | Nano Banana Pipeline</title>
+
+    <link rel="stylesheet" href="https://paxamans.github.io/style.css?h=501c6ea82db27d74ea03">
+
+
+
+
+</head>
+
+<body>
+
+    <header class="space">
+        <a href="https:&#x2F;&#x2F;paxamans.github.io">&LeftArrow; Home</a>
+    </header>
+
+
+    <main>
+        <h1>Nano Banana Pipeline</h1>
+
+        <p class="secondary small">
+            02 December, 2025
+
+
+
+            - Categories:
+
+
+            <a href="https:&#x2F;&#x2F;paxamans.github.io&#x2F;categories&#x2F;tools&#x2F;">Tools</a>,
+
+
+            <a href="https:&#x2F;&#x2F;paxamans.github.io&#x2F;categories&#x2F;productivity&#x2F;">Productivity</a>
+
+
+
+            - Tags:
+
+
+            <a href="https:&#x2F;&#x2F;paxamans.github.io&#x2F;tags&#x2F;nano-banana&#x2F;">Nano Banana</a>,
+
+
+            <a href="https:&#x2F;&#x2F;paxamans.github.io&#x2F;tags&#x2F;mnemonic&#x2F;">Mnemonic</a>,
+
+
+            <a href="https:&#x2F;&#x2F;paxamans.github.io&#x2F;tags&#x2F;pipeline&#x2F;">Pipeline</a>
+
+
+        </p>
+
+        <div class="space"></div>
+        <p>I used <strong>Nano Banana</strong> to create this mnemonic pipeline image.</p>
+        <p>Here is the prompt I used:</p>
+        <blockquote>
+            <p>Create mnemonically understandable pipeline of figures shapes, maybe faces, arrows etc that describes
+                classic situation like : bang on the door-> wait for an answer -> if yes -> pull -> if no -> wait -> if
+                wait too much - go</p>
+        </blockquote>
+        <p>And here is the result:</p>
+        <p><img src="https://paxamans.github.io/nano_banana_pipeline.png" alt="Nano Banana Pipeline" /></p>
+
+    </main>
+
+    <div class="dark-mode-buttons">
+        <button class="dark-mode-button" id="dark-mode-on"><img src="https://paxamans.github.io/dark_mode.svg"
+                width="24" height="24" alt="Dark mode" aria-label="dark mode toggle" title="Dark mode"></button>
+        <button class="dark-mode-button" id="dark-mode-off"><img src="https://paxamans.github.io/light_mode.svg"
+                width="24" height="24" alt="Light mode" aria-label="light mode toggle" title="Light mode"></button>
+    </div>
+    <script>
+        const cls = document.querySelector("html").classList;
+        const sessionTheme = sessionStorage.getItem("theme");
+
+        function setDark() {
+            cls.add("dark-mode");
+            cls.remove("light-mode");
+            sessionStorage.setItem("theme", "dark");
+        }
+        function setLight() {
+            cls.add("light-mode");
+            cls.remove("dark-mode");
+            sessionStorage.setItem("theme", "light");
+        }
+
+        if (sessionTheme === "dark") {
+            setDark();
+        } else if (sessionTheme === "light") {
+            setLight();
+        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            setDark();
+        }
+
+        document.getElementById("dark-mode-on").addEventListener("click", function (e) {
+            setDark();
+        });
+        document.getElementById("dark-mode-off").addEventListener("click", function (e) {
+            setLight();
+        });
+    </script>
+    <noscript>
+        <style>
+            .dark-mode-buttons {
+                display: none;
+            }
+        </style>
+    </noscript>
+</body>
+
+</html>
