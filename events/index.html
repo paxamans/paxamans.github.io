@@ -4,34 +4,29 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="sharing personal opinion online">
-    <title>paxamans blog | About</title>
-
-    <link rel="stylesheet" href="https://paxamans.github.io/style.css?h=501c6ea82db27d74ea03">
-
-
-
-
+    <meta name="description" content="Photos from events.">
+    <title>Iggys website | Events</title>
+    <link rel="stylesheet" href="https://paxamans.github.io/style.css">
 </head>
 
 <body>
-
     <header class="space">
-        <a href="https:&#x2F;&#x2F;paxamans.github.io">&LeftArrow; Home</a>
+        <a href="https://paxamans.github.io/">&LeftArrow; Home</a>
     </header>
 
-
     <main>
-        <h1>About</h1>
+        <h1>Events</h1>
+        <p class="space">Photos from events.</p>
+        <p>To publish photos, add an event section below and put its images in <code>events/photos/</code> (or use
+            image URLs). Commit the changes to publish them; this static site does not support direct uploads.
+            Click any photo to view it full size.</p>
 
-        <div class="space"></div>
-        <p>My name is Igor. I try to be a good person while enjoying life. My
-            biggest hobby is climbing, and I post climbing videos on <a
-                href="https://instagram.com/ultrapax90">Instagram (@ultrapax90)</a>. I also enjoy spending time with my
-            loved ones, drinking different teas, and connecting with others.</p>
-        <p>I have a strong belief that the attention mechanism is not the direct path to AGI or ASI. Neither I nor
-            others in the field have yet conceived of what that fundamental innovation might be.</p>
-
+        <section>
+            <h2>Event name - date</h2>
+            <div class="photo-grid">
+                <img src="/events/photos/event_1.jpg" alt="first one">
+            </div>
+        </section>
     </main>
 
     <div class="dark-mode-buttons">
@@ -63,20 +58,10 @@
             setDark();
         }
 
-        document.getElementById("dark-mode-on").addEventListener("click", function (e) {
-            setDark();
-        });
-        document.getElementById("dark-mode-off").addEventListener("click", function (e) {
-            setLight();
-        });
+        document.getElementById("dark-mode-on").addEventListener("click", setDark);
+        document.getElementById("dark-mode-off").addEventListener("click", setLight);
     </script>
-    <noscript>
-        <style>
-            .dark-mode-buttons {
-                display: none;
-            }
-        </style>
-    </noscript>
+    <script src="/photo-gallery.js" defer></script>
 </body>
 
 </html>

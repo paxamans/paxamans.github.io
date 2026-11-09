@@ -23,7 +23,7 @@ def generate_rss():
                 date_str = ""
                 
                 if '<title>' in content:
-                    title = content.split('<title>')[1].split('</title>')[0].replace('paxamans blog | ', '')
+                    title = content.split('<title>')[1].split('</title>')[0].replace('Iggys website | ', '')
                 
                 if '<meta name="description" content="' in content:
                     description = content.split('<meta name="description" content="')[1].split('"')[0]
@@ -67,7 +67,7 @@ def generate_rss():
     rss_content = f"""<?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-    <title>paxamans blog</title>
+    <title>Iggys website</title>
     <link>{BASE_URL}</link>
     <description>Sharing personal opinion online</description>
     <language>en-us</language>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-    <title>paxamans blog</title>
+    <title>Iggys website</title>
     <link>https://paxamans.github.io</link>
     <description>Sharing personal opinion online</description>
     <language>en-us</language>
@@ -13,13 +13,6 @@
         <description>explaining deepseek hype</description>
         <pubDate>Thu, 30 Jan 2025 23:00:00 GMT</pubDate>
         <guid>https://paxamans.github.io/blog/deepseek-hype/</guid>
-    </item>
-    <item>
-        <title>Nano Banana Pipeline</title>
-        <link>https://paxamans.github.io/blog/nano-banana-pipeline/</link>
-        <description>How I used Nano Banana to create a mnemonic pipeline image.</description>
-        <pubDate>Mon, 01 Dec 2025 23:00:00 GMT</pubDate>
-        <guid>https://paxamans.github.io/blog/nano-banana-pipeline/</guid>
     </item>
     <item>
         <title>titans</title>
