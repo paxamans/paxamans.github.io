@@ -33,6 +33,7 @@ details p:has(img) img {
     margin: 0;
     padding: 0;
     border: 0;
+    overflow: hidden;
     background: transparent;
 }
 
@@ -50,13 +51,18 @@ details p:has(img) img {
     place-items: center;
     width: 100%;
     height: 100%;
+    min-width: 0;
+    min-height: 0;
     margin: 0;
 }
 
 .photo-viewer img {
     display: block;
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: auto;
+    max-width: calc(100vw - 2rem);
+    max-height: calc(100vh - 6rem);
+    max-height: calc(100dvh - 6rem);
     object-fit: contain;
 }
 
